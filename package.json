@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "task1": "nodemon --exec babel-node --presets=@babel/preset-env -- src/task1.js",
-    "task2": "nodemon --exec babel-node --presets=@babel/preset-env -- src/task2.js"
+    "task1": "nodemon --exec babel-node --presets=@babel/preset-env -- src/task_1_1.js",
+    "task2": "nodemon --exec babel-node --presets=@babel/preset-env -- src/task_1_2.js"
   },
   "repository": {
     "type": "git",

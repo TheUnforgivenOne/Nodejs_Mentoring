@@ -1,8 +1,8 @@
 import csv from 'csvtojson';
 import fs from 'fs';
 
-const rStream = fs.createReadStream('src/task2.csv');
-const wStream = fs.createWriteStream('src/task2.txt');
+const rStream = fs.createReadStream('src/task_1_2.csv');
+const wStream = fs.createWriteStream('src/task_1_2.txt');
 
 rStream
   .pipe(
