@@ -8,7 +8,7 @@ rStream
   .pipe(
     csv({
       headers: ['book', 'author', 'amount', 'price'],
-      checkType: true,
+      checkType: true
     })
   )
   .on('error', (error) => console.log(error))
