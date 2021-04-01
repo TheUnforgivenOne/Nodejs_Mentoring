@@ -9,15 +9,15 @@ export const users: User[] = [
   { id: 'a90aa1d7-abc5-43f2-b915-07c9d6677281', login: 'user2', password: '123', age: 34, isDeleted: false }
 ];
 
-export const getAll = () => {
+export const getAll = (): User[] => {
   return users;
 };
 
-export const getById = (id) => {
-  return users.find((user) => user.id === id);
+export const getById = (id): User => {
+  return users.find((user: User) => user.id === id);
 };
 
-export const create = (login, password, age) => {
+export const create = (login, password, age): User => {
   const newUser: User = {
     id: newId(),
     login: String(login),
@@ -30,8 +30,8 @@ export const create = (login, password, age) => {
   return newUser;
 };
 
-export const updateInfoById = (id, login, password, age) => {
-  const userInfo = users.find((user) => user.id === id);
+export const updateInfoById = (id, login, password, age): User => {
+  const userInfo: User = users.find((user: User) => user.id === id);
 
   login && Object.assign(userInfo, { login: String(login) });
   password && Object.assign(userInfo, { password: String(password) });
@@ -40,13 +40,13 @@ export const updateInfoById = (id, login, password, age) => {
   return userInfo;
 };
 
-export const deleteById = (id) => {
-  const userInfo = users.find((user) => user.id === id);
+export const deleteById = (id): User => {
+  const userInfo: User = users.find((user: User) => user.id === id);
   userInfo.isDeleted = true;
 
   return userInfo;
 };
 
 export const getFiltered = (loginSubstring, limit) => {
-  return users.slice(0, limit).filter((user) => user.login.substring(loginSubstring)).sort(byAlphabet);
+  return users.slice(0, limit).filter((user: User) => user.login.substring(loginSubstring)).sort(byAlphabet);
 };
