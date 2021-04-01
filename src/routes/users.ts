@@ -17,8 +17,8 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const query = req.query;
-  const newUser = create(query);
+  const { login, password, age } = req.query;
+  const newUser = create(login, password, age);
 
   res.status(201).json({ message: 'Created new user', newUser });
 });

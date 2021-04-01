@@ -17,8 +17,7 @@ export const getById = (id) => {
   return users.find((user) => user.id === id);
 };
 
-export const create = (query) => {
-  const { login, password, age } = query;
+export const create = (login, password, age) => {
   const newUser: User = {
     id: newId(),
     login: String(login),
