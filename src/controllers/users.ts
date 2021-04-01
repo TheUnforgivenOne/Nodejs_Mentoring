@@ -36,9 +36,9 @@ export const updateInfoById = (req, res) => {
   const { login, password, age } = req.query;
   const userInfo = users.find((user) => user.id === id);
 
-  login && Object.assign(userInfo, { login });
-  password && Object.assign(userInfo, { password });
-  age && Object.assign(userInfo, { age });
+  login && Object.assign(userInfo, { login: String(login) });
+  password && Object.assign(userInfo, { password: String(password) });
+  age && Object.assign(userInfo, { age: Number(age) });
 
   res.status(200).json(
     {
