@@ -9,19 +9,16 @@ export const users: User[] = [
   { id: 'a90aa1d7-abc5-43f2-b915-07c9d6677281', login: 'user2', password: '123', age: 34, isDeleted: false }
 ];
 
-export const getAll = (req, res) => {
-  res.status(200).json({ message: 'All users', users });
+export const getAll = () => {
+  return users;
 };
 
-export const getById = (req, res) => {
-  const id = req.params.id;
-  const userInfo = users.find((user) => user.id === id);
-
-  res.status(200).json({ message: `User ${userInfo.id}`, userInfo });
+export const getById = (id) => {
+  return users.find((user) => user.id === id);
 };
 
-export const create = (req, res) => {
-  const { login, password, age } = req.query;
+export const create = (query) => {
+  const { login, password, age } = query;
   const newUser: User = {
     id: newId(),
     login: String(login),
@@ -31,37 +28,26 @@ export const create = (req, res) => {
   };
   users.push(newUser);
 
-  res.status(201).json({ message: 'Created new user', newUser });
+  return newUser;
 };
 
-export const updateInfoById = (req, res) => {
-  const id = req.params.id;
-  const { login, password, age } = req.query;
+export const updateInfoById = (id, login, password, age) => {
   const userInfo = users.find((user) => user.id === id);
 
   login && Object.assign(userInfo, { login: String(login) });
   password && Object.assign(userInfo, { password: String(password) });
   age && Object.assign(userInfo, { age: Number(age) });
 
-  res.status(200).json(
-    {
-      message: `Updated${login ? ' login' : ''}${password ? ' password' : ''}${age ? ' age' : ''} properties of user ${userInfo.id}`,
-      userInfo
-    }
-  );
+  return userInfo;
 };
 
-export const deleteById = (req, res) => {
-  const id = req.params.id;
+export const deleteById = (id) => {
   const userInfo = users.find((user) => user.id === id);
   userInfo.isDeleted = true;
 
-  res.status(200).json({ message: `Deleted user ${userInfo.id}`, userInfo });
+  return userInfo;
 };
 
-export const getFiltered = (req, res) => {
-  const { loginSubstring, limit } = req.params;
-  const filteredUsers = users.slice(0, limit).filter((user) => user.login.substring(loginSubstring)).sort(byAlphabet);
-
-  res.status(200).json({ message: `${filteredUsers.length} users filtered by "${loginSubstring}"`, filteredUsers });
+export const getFiltered = (loginSubstring, limit) => {
+  return users.slice(0, limit).filter((user) => user.login.substring(loginSubstring)).sort(byAlphabet);
 };

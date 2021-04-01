@@ -3,16 +3,51 @@ import { getAll, getById, create, updateInfoById, deleteById, getFiltered } from
 
 const router = Router();
 
-router.get('/', getAll);
+router.get('/', (req, res) => {
+  const users = getAll();
 
-router.get('/:id', getById);
+  res.status(200).json({ message: 'All users', users });
+});
 
-router.post('/', create);
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  const userInfo = getById(id);
 
-router.put('/:id', updateInfoById);
+  res.status(200).json({ message: `User ${userInfo.id}`, userInfo });
+});
 
-router.delete('/:id', deleteById);
+router.post('/', (req, res) => {
+  const query = req.query;
+  const newUser = create(query);
 
-router.get('/:limit/:loginSubstring', getFiltered);
+  res.status(201).json({ message: 'Created new user', newUser });
+});
+
+router.put('/:id', (req, res) => {
+  const id = req.params.id;
+  const { login, password, age } = req.query;
+  const userInfo = updateInfoById(id, login, password, age);
+
+  res.status(200).json(
+    {
+      message: `Updated${login ? ' login' : ''}${password ? ' password' : ''}${age ? ' age' : ''} properties of user ${userInfo.id}`,
+      userInfo
+    }
+  );
+});
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  const userInfo = deleteById(id);
+
+  res.status(200).json({ message: `Deleted user ${userInfo.id}`, userInfo });
+});
+
+router.get('/:limit/:loginSubstring', (req, res) => {
+  const { loginSubstring, limit } = req.params;
+  const filteredUsers = getFiltered(loginSubstring, limit);
+
+  res.status(200).json({ message: `${filteredUsers.length} users filtered by "${loginSubstring}"`, filteredUsers });
+});
 
 export { router };
