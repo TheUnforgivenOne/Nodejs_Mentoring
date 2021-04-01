@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
+import { v4 as newId } from 'uuid';
 import { User } from '../types/User';
 import { byAlphabet } from '../utils/utils';
 
 export const users: User[] = [
-  { id: '1', login: 'user1', password: '123', age: 23, isDeleted: false }
+  { id: '892829ff-71f5-4618-8fb4-9a7b945c0550', login: 'user3', password: '123', age: 23, isDeleted: false },
+  { id: '3e9e0d48-aecd-41e9-8f19-165252807552', login: 'user1', password: '123', age: 18, isDeleted: false },
+  { id: 'a90aa1d7-abc5-43f2-b915-07c9d6677281', login: 'user2', password: '123', age: 34, isDeleted: false }
 ];
 
 export const getAll = (req, res) => {
@@ -20,7 +23,7 @@ export const getById = (req, res) => {
 export const create = (req, res) => {
   const { login, password, age } = req.query;
   const newUser: User = {
-    id: '2',
+    id: newId(),
     login: String(login),
     password: String(password),
     age: Number(age),
