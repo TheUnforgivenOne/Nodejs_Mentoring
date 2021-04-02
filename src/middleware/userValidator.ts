@@ -31,7 +31,6 @@ export const validateSchema = (schema) => {
     if (error?.isJoi) {
       res.status(400).json(errorResponse(error.details));
     } else {
-      // eslint-disable-next-line callback-return
       next();
     }
   };
