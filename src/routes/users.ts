@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { getAll, getById, create, updateInfoById, deleteById, getFiltered } from '../controllers/users';
+import { userSchema, validateSchema } from '../middleware/userValidator';
 
 const router = Router();
 
@@ -16,7 +17,7 @@ router.get('/:id', (req, res) => {
   res.status(200).json({ message: `User ${userInfo.id}`, userInfo });
 });
 
-router.post('/', (req, res) => {
+router.post('/', validateSchema(userSchema), (req, res) => {
   const { login, password, age } = req.query;
   const newUser = create(login, password, age);
 

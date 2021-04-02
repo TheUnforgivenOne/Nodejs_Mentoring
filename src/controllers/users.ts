@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { v4 as newId } from 'uuid';
 import { User } from '../types/User';
 import { byAlphabet } from '../utils/utils';
