@@ -3,9 +3,9 @@ import { User } from '../types/User';
 import { byAlphabet } from '../utils/utils';
 
 export const users: User[] = [
-  { id: '892829ff-71f5-4618-8fb4-9a7b945c0550', login: 'user3', password: '123', age: 23, isDeleted: false },
-  { id: '3e9e0d48-aecd-41e9-8f19-165252807552', login: 'user1', password: '123', age: 18, isDeleted: false },
-  { id: 'a90aa1d7-abc5-43f2-b915-07c9d6677281', login: 'user2', password: '123', age: 34, isDeleted: false }
+  { id: '892829ff-71f5-4618-8fb4-9a7b945c0550', login: 'user3', password: 'ab3c', age: 23, isDeleted: false },
+  { id: '3e9e0d48-aecd-41e9-8f19-165252807552', login: 'user1', password: '1abc', age: 18, isDeleted: false },
+  { id: 'a90aa1d7-abc5-43f2-b915-07c9d6677281', login: 'user2', password: 'a2bc', age: 34, isDeleted: false }
 ];
 
 export const getAll = (): User[] => {
